@@ -1,19 +1,45 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
+    .background {
+        fill: none;
+        pointer-events: all;
+    }
+    
     .map {
         fill: #009688;
         stroke: #f5f5f5;
     }
     
     .border_map {
+        fill: none;
         stroke: #333333;
-        stroke-width: 3px;
+    }
+    
+    .states-names {
+        fill: none;
+        stroke: #333333;
     }
     
     .active {
         fill: orange;
     }
+    
+    .torino_map {
+        fill: #fff; 
+        stroke: blue; 
+        stroke-width: 3px;
+    }
+    
+    .place-label {
+        fill: black;
+        fill-opacity: 1;
+        font-size: 10px;
+        font-weight: 300;
+        text-anchor: left;
+    }
+    
+    
 </style>
 <html>
 
@@ -25,73 +51,139 @@
             height = 500,
             centered;
 
+        var projection = d3.geo.albers()
+            .center([0, 41])
+            .rotate([347, 0])
+            .parallels([35, 45])
+            .scale(2000)
+            .translate([width / 2, height / 2]);
+
+        var path = d3.geo.path()
+            .projection(projection);
+
         var svg = d3.select("body").append("svg")
             .attr("width", width)
             .attr("height", height);
+
+        svg.append("rect")
+            .attr("class", "background")
+            .attr("width", width)
+            .attr("height", height)
+            .on("click", clicked);
+
+        var g = svg.append("g");
+
+
         d3.json("itx.json", function (error, it) {
-            var projection = d3.geo.albers()
-                .center([0, 41])
-                .rotate([347, 0])
-                .parallels([35, 45])
-                .scale(2000)
-                .translate([width / 2, height / 2]);
+
 
             var subunits = topojson.feature(it, it.objects.sub);
+            console.log(topojson.feature(it, it.objects.sub).features);
+            console.log(subunits);
+            
+            g.append("g")
+                .selectAll("path")
+                .data(topojson.feature(it, it.objects.sub).features)
+                .datum(subunits)
+                .enter().append("path")
+                .attr("class", "map")
+                .attr("d", path)
+                .text("ciaoooooooo")
+                .on("click", clicked);
 
-            var path = d3.geo.path()
-                .projection(projection);
 
             // draw border with sea
-            svg.append("path")
+            g.append("path")
                 .datum(topojson.mesh(it, it.objects.sub, function (a, b) {
                     return a === b;
                 }))
                 .attr("class", "border_map")
                 .attr("d", path);
 
-            // draw all the features together (no different styles)
-            svg.append("path")
-                .datum(subunits)
-                .attr("class", "map")
-                .attr("d", path)
-                .on("click", function clicked(d) {
-                        var x, y, k;
+            console.log(topojson.mesh(it, it.objects.sub));
+            console.log(topojson.mesh(it, it.objects.sub).geometries);
+            
+            
+            
+            /*
+            g.selectAll(".place-label")
+                .data(topojson.feature(it, it.objects.sub.geometries))
+                .enter().append("text")
+                .attr("class", "place-label")
+                .attr("transform", function(d) { return "translate(" + projection(d.coordinates) + ")"; })
+                .attr("dx", "0.75em")
+                .text(function(d) { return "ciao"; });
+            */
+            
+            
+          //  g.append("path")
+          //  .datum(topojson.mesh(it, it.objects.sub))
+          //  .attr("fill", function(path) {console.log(path); return "#FF00FF";})
+          //  .attr("d", path)
+          //  .text("pippo")
+          //  .on("click", clicked);
 
-                        if (d && centered !== d) {
-                            var centroid = path.centroid(d);
-                            x = centroid[0];
-                            y = centroid[1];
-                            k = 4;
-                            centered = d;
-                        } else {
-                            x = width / 2;
-                            y = height / 2;
-                            k = 1;
-                            centered = null;
-                        }
-
-                        svg.selectAll("path")
-                            .classed("active", centered && function (d) {
-                                return d === centered;
-                            });
-
-                        svg.transition()
-                            .duration(750)
-                            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
-                            .style("stroke-width", 1.5 / k + "px");
-                    }
+           // function getRandomColor() {
+//
+           //     return "#FF00FF";
+           // }
+            
+            
+            
+            
+            
+            
+ //         
+ //         g.append("path")
+ //             .datum(topojson.mesh(it, it.objects.sub, function(a, b) { return a.id === 'TORINO'; }))
+ //             .attr("class", "torino_map")
+ //             .attr("d", path);
 
 
+//            g.append("g")
+//                .attr("class", "states-names")
+//                .selectAll("text")
+//                .data(subunits)
+//                .enter()
+//                .append("svg:text")
+//                .text(function (d) {
+//                    return d.properties.nome_pro[d.id];
+//                })
 
 
-                );
-            // draw and style any feature at time
-            /*svg.selectAll("path")
-            .data(topojson.feature(it, it.objects.sub).features)
-            .enter().append("path")
-            .attr("class",function(d) { return d.id; })
-            .attr("d",path);*/
+
+
+
+
         });
+
+
+        function clicked(d) {
+            var x, y, k;
+
+            if (d && centered !== d) {
+                var centroid = path.centroid(d);
+                x = centroid[0];
+                y = centroid[1];
+                k = 4;
+                centered = d;
+            } else {
+                x = width / 2;
+                y = height / 2;
+                k = 1;
+                centered = null;
+            }
+
+            svg.selectAll("path")
+                .classed("active", centered && function (d) {
+                    return d === centered;
+                });
+
+            svg.transition()
+                .duration(750)
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+                .style("stroke-width", 1.5 / k + "px");
+        }
     </script>
 </body>
 
