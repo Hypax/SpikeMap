@@ -104,15 +104,14 @@
             
             
             
-            /*
-            g.selectAll(".place-label")
-                .data(topojson.feature(it, it.objects.sub.geometries))
-                .enter().append("text")
-                .attr("class", "place-label")
-                .attr("transform", function(d) { return "translate(" + projection(d.coordinates) + ")"; })
-                .attr("dx", "0.75em")
-                .text(function(d) { return "ciao"; });
-            */
+            
+//            g.selectAll(".place-label")
+//                .data(topojson.feature(it, it.objects.sub.geometries))
+//                .enter().append("text")
+//                .attr("class", "place-label")
+//                .attr("transform", function(d) { return "translate(" + projection(d.coordinates) + ")"; })
+//                .attr("dx", "0.75em")
+//                .text("ciao");
             
             
           //  g.append("path")
@@ -173,12 +172,12 @@
                 centered = null;
             }
 
-            svg.selectAll("path")
+            g.selectAll("path")
                 .classed("active", centered && function (d) {
                     return d === centered;
                 });
 
-            svg.transition()
+            g.transition()
                 .duration(750)
                 .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
                 .style("stroke-width", 1.5 / k + "px");
