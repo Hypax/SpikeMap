@@ -518,13 +518,6 @@
                     "nome_pro": "MATERA"
                 }
             }, {
-                "type": "MultiPolygon",
-                "arcs": [[[348, 349, 350, 351, 352, 353]], [[354, 355, 356]], [[357, 358, 359]]],
-                "id": "ORISTANO",
-                "properties": {
-                    "nome_pro": "ORISTANO"
-                }
-            }, {
                 "type": "Polygon",
                 "arcs": [[-13, -24, -5]],
                 "id": "BIELLA",
@@ -537,13 +530,6 @@
                 "id": "CROTONE",
                 "properties": {
                     "nome_pro": "CROTONE"
-                }
-            }, {
-                "type": "MultiPolygon",
-                "arcs": [[[363, 364, 365, 366]]],
-                "id": "CARBONIA-IGLESIAS",
-                "properties": {
-                    "nome_pro": "CARBONIA-IGLESIAS"
                 }
             }, {
                 "type": "Polygon",
@@ -566,7 +552,12 @@
                 "properties": {
                     "nome_pro": "VIBO VALENTIA"
                 }
-            }, {
+            }, 
+                           
+                           
+                         
+                           
+                {
                 "type": "MultiPolygon",
                 "arcs": [[[371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385]], [[386, 387, -389, 389]], [[390, 391, 392]]],
                 "id": "OLBIA-TEMPIO",
@@ -574,6 +565,57 @@
                     "nome_pro": "OLBIA-TEMPIO"
                 }
             }, {
+                "type": "MultiPolygon",
+                "arcs": [[[441, 442, 443, -377, 444, 445, -354, 446, 447, 448]]],
+                "id": "SASSARI",
+                "properties": {
+                    "nome_pro": "SASSARI"
+                }
+            }, {
+                "type": "MultiPolygon",
+                "arcs": [[[470, -398, 471, -349, -446, -376, -375]]],
+                "id": "NUORO",
+                "properties": {
+                    "nome_pro": "NUORO"
+                }
+            }, {
+                "type": "MultiPolygon",
+                "arcs": [[[348, 349, 350, 351, 352, 353]], [[354, 355, 356]], [[357, 358, 359]]],
+                "id": "ORISTANO",
+                "properties": {
+                    "nome_pro": "ORISTANO"
+                }
+            }, {
+                "type": "Polygon",
+                "arcs": [[402, -364, 403, -351]],
+                "id": "MEDIO CAMPIDANO",
+                "properties": {
+                    "nome_pro": "MEDIO CAMPIDANO"
+                }
+            }, {
+                "type": "MultiPolygon",
+                "arcs": [[[492, -365, -403, -350, -472, -397, 493]]],
+                "id": "CAGLIARI",
+                "properties": {
+                    "nome_pro": "CAGLIARI"
+                }
+            }, {
+                "type": "MultiPolygon",
+                "arcs": [[[363, 364, 365, 366]]],
+                "id": "CARBONIA-IGLESIAS",
+                "properties": {
+                    "nome_pro": "CARBONIA-IGLESIAS"
+                }
+            },
+            
+                           
+            
+                           
+                           
+                           
+                           
+                
+                {
                 "type": "Polygon",
                 "arcs": [[393, -219, -211]],
                 "id": "FERMO",
@@ -607,13 +649,6 @@
                 "id": "RIMINI",
                 "properties": {
                     "nome_pro": "RIMINI"
-                }
-            }, {
-                "type": "Polygon",
-                "arcs": [[402, -364, 403, -351]],
-                "id": "MEDIO CAMPIDANO",
-                "properties": {
-                    "nome_pro": "MEDIO CAMPIDANO"
                 }
             }, {
                 "type": "Polygon",
@@ -659,13 +694,6 @@
                 }
             }, {
                 "type": "MultiPolygon",
-                "arcs": [[[441, 442, 443, -377, 444, 445, -354, 446, 447, 448]]],
-                "id": "SASSARI",
-                "properties": {
-                    "nome_pro": "SASSARI"
-                }
-            }, {
-                "type": "MultiPolygon",
                 "arcs": [[[-426, -425, 449, 450, 451, -344, -427], [-453], [-454], [425, -455]]],
                 "id": "TARANTO",
                 "properties": {
@@ -699,14 +727,7 @@
                 "properties": {
                     "nome_pro": "CALTANISSETTA"
                 }
-            }, {
-                "type": "MultiPolygon",
-                "arcs": [[[470, -398, 471, -349, -446, -376, -375]]],
-                "id": "NUORO",
-                "properties": {
-                    "nome_pro": "NUORO"
-                }
-            }, {
+            },  {
                 "type": "MultiPolygon",
                 "arcs": [[[472, -451, -460, 473, 474, 475, 476, 477, 478, 479, 480]]],
                 "id": "LECCE",
@@ -726,13 +747,6 @@
                 "id": "ENNA",
                 "properties": {
                     "nome_pro": "ENNA"
-                }
-            }, {
-                "type": "MultiPolygon",
-                "arcs": [[[492, -365, -403, -350, -472, -397, 493]]],
-                "id": "CAGLIARI",
-                "properties": {
-                    "nome_pro": "CAGLIARI"
                 }
             }, {
                 "type": "Polygon",
