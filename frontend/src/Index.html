@@ -44,8 +44,17 @@
 <html>
 
 <body>
+    
+                    <!--MapBox Links-->
+<!--
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.css' rel='stylesheet' />
+    <script src="https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.js"></script>
+-->
+    
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
+    
+    
     <script>
         var width = 500,
             height = 500,
@@ -78,8 +87,8 @@
 
 
             var subunits = topojson.feature(it, it.objects.sub);
-            console.log(topojson.feature(it, it.objects.sub).features);
-            console.log(subunits);
+          // console.log(topojson.feature(it, it.objects.sub).features);
+          // console.log(subunits);
             
             g.append("g")
                 .selectAll("path")
@@ -99,8 +108,8 @@
                 .attr("class", "border_map")
                 .attr("d", path);
 
-            console.log(topojson.mesh(it, it.objects.sub));
-            console.log(topojson.mesh(it, it.objects.sub).geometries);
+           // console.log(topojson.mesh(it, it.objects.sub));
+           // console.log(topojson.mesh(it, it.objects.sub).geometries);
             
             
             
@@ -138,15 +147,15 @@
  //             .attr("d", path);
 
 
-//            g.append("g")
-//                .attr("class", "states-names")
-//                .selectAll("text")
-//                .data(subunits)
-//                .enter()
-//                .append("svg:text")
-//                .text(function (d) {
-//                    return d.properties.nome_pro[d.id];
-//                })
+            g.append("g")
+                .attr("class", "states-names")
+                .selectAll("text")
+                .data(topojson.feature(it, it.objects.sub.geometries))
+                .enter()
+                .append("g:text")
+                .text(function (d) {
+                    return d.properties.nome_pro[d.id];
+                })
 
 
 
